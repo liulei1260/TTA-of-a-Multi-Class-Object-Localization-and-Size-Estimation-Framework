@@ -37,7 +37,7 @@ if __name__ == '__main__':
                              num_workers=1, shuffle=False, persistent_workers=True, drop_last=True, pin_memory=True)
 
     model_path = './checkpoints'
-    # 遍历model_path下的所有文件
+    # 遍历model_path下的所有文件 loop all checkpoint files under model_path
     for modelPath in os.listdir(model_path):
         weights_dict = torch.load(os.path.join(model_path, modelPath))
         model.load_state_dict(weights_dict['model'])
