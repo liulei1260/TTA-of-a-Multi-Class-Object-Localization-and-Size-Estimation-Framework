@@ -96,17 +96,18 @@ class FruitDataset(Dataset):
                 'heatmap_size': torch.from_numpy(heatmap_size).float(),
                 'gt': torch.from_numpy(np.array(gt))}
 
-#用来生成一个 2D 高斯分布的滤波核，给定形状和 sigma 参数
+#用来生成一个 2D 高斯分布的滤波核，给定形状和 sigma 参数 
+#Used to generate a filter kernel for a 2D Gaussian distribution, given the shape and sigma parameters
 def gaussian2D(shape, sigma=1):
     m, n = [(ss - 1.) / 2. for ss in shape]
     y, x = np.ogrid[-m:m + 1, -n:n + 1]
     h = np.exp(-(x * x + y * y) / (2 * sigma * sigma))
-    h[h < np.finfo(h.dtype).eps * h.max()] = 0    # 限制最小的值
+    h[h < np.finfo(h.dtype).eps * h.max()] = 0    # 限制最小的值 Minimum value
     return h
 
-#绘制尺寸热力图
+#绘制尺寸热力图 Draw size heat map
 def draw_umich_gaussian_size(heatmap, center, radius, k=1):
-    diameter = 2 * radius + 1  # 直径
+    diameter = 2 * radius + 1  # 直径 diameter
     gaussian = gaussian2D((diameter, diameter), sigma=diameter / 2)
 
     x, y = int(center[0]/4), int(center[1]/4)
@@ -123,9 +124,9 @@ def draw_umich_gaussian_size(heatmap, center, radius, k=1):
         np.maximum(masked_heatmap, masked_gaussian * k, out=masked_heatmap)
     return heatmap
 
-#绘制位置热力图
+#绘制位置热力图 Draw the location heat map
 def draw_umich_gaussian(heatmap, center, radius, k=1):
-    diameter = 2 * radius + 1  # 直径
+    diameter = 2 * radius + 1  # 直径 diameter
     gaussian = gaussian2D((diameter, diameter), sigma=diameter / 6)
 
     x, y = int(center[0]/4), int(center[1]/4)
