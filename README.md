@@ -1,4 +1,4 @@
-# Test-Time Adaptation of a Multi-Class Object Localization and Size Estimation Framework in the Application on Smart Agriculture
+# Test-Time Adaptation of a Multi-Class Object Localization and Size Estimation Framework
 
 This paper focuses on exploring deep learning techniques to automate the localization, counting, and size estimation of various fruits or vegetables. Considering the huge number of different categories of fruits/vegetables that exist in the real world, achieving the localization, counting, and size estimation tasks in an Open Set Recognition (OSR) environment, i.e., for novel classes unseen during the training process, presents a challenge. This work proposes a test-time domain adaptation approach based on deep learning for multi-class object localization and size estimation in an OSR environment.
 
